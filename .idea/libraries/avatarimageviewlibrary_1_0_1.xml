@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="avatarimageviewlibrary-1.0.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/7d6f0998c1cbc1cb9433387aaa1606e686e189ef/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/7d6f0998c1cbc1cb9433387aaa1606e686e189ef/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.fanrunqi/avatarimageviewlibrary/1.0.1/7507baf6d801d22e57498361258ff768867c89a/avatarimageviewlibrary-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

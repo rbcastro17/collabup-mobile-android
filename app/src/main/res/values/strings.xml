@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">CollabUp</string>
+    <string name="string_error_email">Invalid Email Address</string>
+    <string name="string_error_password">Invalid Password</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_logout">Logout</string>
+    <string name="title_activity_show_announcement">ShowAnnouncementActivity</string>
+    <string name="title_activity_admin_announcement">AdminAnnouncementActivity</string>
+    <string name="title_activity_group_index">GroupIndexActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Search Groups</string>
+    <string name="code">Code</string>
+    <string name="activate_my_account">Activate My Account</string>
+    <string name="confirm_your_account">Confirm Your Account</string>
+    <string name="title_activity_head_event">HeadEventActivity</string>
+
+
+    <string name="main_welcomeText">OneDriveSDK Picker Sample</string>
+    <string name="main_radioWebViewLink">Web View Link</string>
+    <string name="main_radioDownloadLink">Download Link</string>
+    <string name="main_startPickerButton">Pick a File</string>
+    <string name="main_resultTableProperty">Property</string>
+    <string name="main_resultTableValue">Value</string>
+    <string name="main_resultTableName">Name:</string>
+    <string name="main_resultTableLinkType">LinkType:</string>
+    <string name="main_resultTableLink">Link:</string>
+    <string name="main_resultTableFileSize">File Size:</string>
+    <string name="main_resultTableThumbnails">Thumbnails:</string>
+    <string name="main_thumbnailTitle1">Thumbnail: Small</string>
+    <string name="main_thumbnailTitle2">Thumbnail: Medium</string>
+    <string name="main_thumbnailTitle3">Thumbnail: Large</string>
+    <string name="main_thumbnailDefaultUrl">https://www.onedrive.com</string>
+    <string name="main_thumbnailDescription">A thumbnail</string>
+    <string name="main_resultSaveAsLabel">Save Locally</string>
+    <string name="main_resultSaveAsButtonLabel">Save</string>
+    <color name="main_thumbnailBackgroundColor">#0043ae</color>
+
+    <dimen name="main_majorSpacer">16dp</dimen>
+    <dimen name="main_minorSpacer">8dp</dimen>
+    <dimen name="main_marginSides">16dp</dimen>
+
+
+    <string name="main_startSaverButton">Save a File</string>
+    <string name="file_name_edit_text">MyFile.txt</string>
+    <string name="file_name_label">File Name:</string>
+    <string name="file_size_label">File Size (KB):</string>
+    <string name="file_size_edit_text">100</string>
+    <string name="file_name_hint">Name of the file to upload to OneDrive</string>
+    <string name="file_size_hint">Size of the file to upload to OneDrive in kilobytes</string>
+    <string name="error_message_none">None</string>
+    <string name="result_table_label">Saver Results</string>
+    <string name="overall_result_label">Result:</string>
+    <string name="overall_result_success">Success</string>
+    <string name="overall_result_failure">Failure</string>
+    <string name="error_type_label">Error Type:</string>
+    <string name="debug_error_label">Debug Error:</string>
+    <string name="title_activity_admin_home">AdminHomeActivity</string>
+    <string name="title_activity_admins">ActivityAdmins</string>
+    <string name="title_activity_users">ActivityUsers</string>
+    <string name="title_activity_audit_trail">AuditTrailActivity</string>
+    <string name="title_activity_chat_list">ChatListActivity</string>
+
+</resources>

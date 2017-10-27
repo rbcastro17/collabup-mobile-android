@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_announcement"
+            android:title="Announcements" />
+        <item
+            android:id="@+id/nav_events"
+            android:title="Events" />
+        <item
+            android:id="@+id/nav_groups"
+            android:title="Groups" />
+        <item
+            android:id="@+id/nav_proflie"
+            android:title="My Account" />
+        <item
+            android:id="@+id/nav_activities"
+            android:title="My Posts" />
+    </group>
+
+    <item android:title="Social">
+        <menu>
+            <item
+                android:id="@+id/chat"
+                android:title="Chat" />
+            <item
+                android:id="@+id/About"
+                android:title="About the App" />
+        </menu>
+    </item>
+
+</menu>
