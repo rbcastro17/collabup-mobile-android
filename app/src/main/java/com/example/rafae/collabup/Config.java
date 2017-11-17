@@ -12,57 +12,58 @@ public static final String IPaudit= "192.168.43.71:8000";//"collabup.org:81";
 
 //public static final String audit_url = "http://"+IPaudit+"/mobile/admin/getaudit";
 
-public static final String login_url = "http://"+IP+"/mobile/login";
+public static final String login_url = "https://"+IP+"/mobile/login";
 
- public static final String connect_url = "http://"+IP+"/testthis";
+ public static final String connect_url = "https://"+IP+"/testthis";
 
- public static final String register_url = "http://"+IP+"/mobile/register";
-    public static final String fetch_url = "http://"+IP+"mobile/getgroups/chat";
-    public static final String sendok_url = "http://"+IP+"mobile/setok";
-public static final String activate_account_url = "http://"+IP+"/mobile/activate/account";
-public static final String send_forget_code_url = "http://"+IP+"/mobile/sendforget";
-public static final String change_password_url = "http://"+IP+"/mobile/changepassword";
-public static final String change_password_in_url = "http://"+IP+"/mobile/changeinpassword";
-public static final String add_post_url = "http://"+IP+"/mobile/addpost";
-public static final String add_comment_url = "http://"+IP+"/mobile/addcomment";
-public static final String get_activities_url = "http://"+IP+"/mobile/getgroupactivities";
-public static final String get_activities_own_url = "http://"+IP+"/mobile/getactivities/own";
-public static final String fetch_post_url = "http://"+IP+"/mobile/fetchpost";
-public static final String fetch_comments_url = "http://"+IP+"/mobile/fetchcomment";
-public static final String fetch_events_url = "http://"+IP+"/mobile/fetchevents";
-public static final String fetch_folders_url = "http://"+IP+"/mobile/fetchfoldersgroup_id= ";
+ public static final String register_url = "https://"+IP+"/mobile/register";
+    public static final String fetch_url = "https://"+IP+"/mobile/getgroups/chat";
+    public static final String sendok_url = "https://"+IP+"/mobile/setok";
+public static final String activate_account_url = "https://"+IP+"/mobile/activate/account";
+public static final String send_forget_code_url = "https://"+IP+"/mobile/sendforget";
+public static final String change_password_url = "https://"+IP+"/mobile/changepassword";
+public static final String change_password_in_url = "https://"+IP+"/mobile/changeinpassword";
+public static final String add_post_url = "https://"+IP+"/mobile/addpost";
+public static final String add_comment_url = "https://"+IP+"/mobile/addcomment";
+public static final String get_activities_url = "https://"+IP+"/mobile/getgroupactivities";
+public static final String get_activities_own_url = "https://"+IP+"/mobile/getactivities/own";
+public static final String fetch_post_url = "https://"+IP+"/mobile/fetchpost";
+public static final String fetch_comments_url = "https://"+IP+"/mobile/fetchcomment";
+public static final String fetch_events_url = "https://"+IP+"/mobile/fetchevents";
+public static final String fetch_folders_url = "https://"+IP+"/mobile/fetchfolders?group_id= ";
 
 
    //public static final String get_activities_url = "http://"+IP+"/mobile/getactivities";
-    public static final String list_members_url = "http://"+IP+"/mobile/fetchmembers";
+    public static final String list_members_url = "https://"+IP+"/mobile/fetchmembers";
 
-    public static final String url_image_upload = "http:"+IP+"mobile/upload/image";
+    public static final String url_image_upload = "https:"+IP+"mobile/upload/image";
 
-    public static final String URL_GET_ALL_GROUP = "http://"+IP+"/mobile/getgroups";
-    public static final String URL_GET_ALL_ANNOUNCEMENT = "http://"+IP+"/mobile/announcement";
-    public static final String URL_GET_ALL_POST = "http://"+IP+"/";
-    public static final String URL_DELETE_POST = "http://"+IP+"/mobile/deletepost";
-    public static final String URL_UPDATE_POST = "http://"+IP+"/mobile/updatepost";
-    public static final String URL_GET_POST = "http://"+IP+"/mobile/fetchownpost";
-   public static final String fetchfile_url = "http://"+IP+"/mobile/fetchfiles";
+    public static final String URL_GET_ALL_GROUP = "https://"+IP+"/mobile/getgroups";
+    public static final String URL_GET_ALL_ANNOUNCEMENT = "https://"+IP+"/mobile/announcement";
+    public static final String URL_GET_ALL_POST = "https://"+IP+"/";
+    public static final String URL_DELETE_POST = "https://"+IP+"/mobile/deletepost";
+    public static final String URL_UPDATE_POST = "https://"+IP+"/mobile/updatepost";
+    public static final String URL_GET_POST = "https://"+IP+"/mobile/fetchownpost";
+   public static final String fetchfile_url = "https://"+IP+"/mobile/fetchfiles";
 
 
  //ADMIN
- public static final String URL_ADDANNOUNCEMENT="http://"+IP+"/mobile/admin/addannouncement";
- public static final String URL_GET_ALLUSERS = "http://"+IP+"/mobile/admin/getusers";
- public static final String URL_GET_ALLANNOUNCEMENT = "http://"+IP+"/mobile/announcement/";
- public static final String URL_GET_ALLADMINS = "http://"+IP+"/mobile/admin/alladmins";
- public static final String URL_GET_USER = "http://"+IP+"/mobile/admin/getuser";
- public static final String URL_GET_ANNOUNCEMENT = "http://"+IP+"/mobile/announcement/";
- public static final String URL_GET_ANNOUNCEMENTONE = "http://"+IP+"/mobile/announcement/one";
+ public static final String URL_ADDANNOUNCEMENT="https://"+IP+"/mobile/admin/addannouncement";
+ public static final String URL_GET_ALLUSERS = "https://"+IP+"/mobile/admin/getusers";
+ public static final String URL_GET_ALLANNOUNCEMENT = "https://"+IP+"/mobile/announcement/";
+ public static final String URL_GET_ALLADMINS = "https://"+IP+"/mobile/admin/alladmins";
+ public static final String URL_GET_USER = "https://"+IP+"/mobile/admin/getuser";
+ public static final String URL_GET_ANNOUNCEMENT = "https://"+IP+"/mobile/announcement/";
+ public static final String URL_GET_ANNOUNCEMENTONE = "https://"+IP+"/mobile/announcement/one";
 
- public static final String URL_UPDATE_ANNOUNCEMENT = "http://"+IP+"/mobile/admin/updateannouncement";
- public static final String URL_DELETE_ANNOUNCEMENT = "http://"+IP+"/mobile/admin/deleteannouncement";
- public static final String URL_Activate = "http://"+IP+"/mobile/admin/activateuser";
- public static final String URL_Deactivate = "http://"+IP+"/mobile/admin/deactivateuser";
- public static final String URL_fetchuserinfo = "http://"+IP+"/mobile/admin/fetchuserinfo";
+ public static final String URL_UPDATE_ANNOUNCEMENT = "https://"+IP+"/mobile/admin/updateannouncement";
+ public static final String URL_DELETE_ANNOUNCEMENT = "https://"+IP+"/mobile/admin/deleteannouncement";
+ public static final String URL_Activate = "https://"+IP+"/mobile/admin/activateuser";
+ public static final String URL_Deactivate = "https://"+IP+"/mobile/admin/deactivateuser";
+ public static final String URL_fetchuserinfo = "https://"+IP+"/mobile/admin/fetchuserinfo";
 
- public static final String audit_url = "http://"+IP+"/mobile/admin/getaudit";
+ public static final String audit_url = "https://"+IP+"/mobile/admin/getaudit";
+ public static final String getuserinfo_url = "https://"+IP+"/mobile/getuserinfo";
 
 
 

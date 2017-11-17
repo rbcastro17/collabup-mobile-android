@@ -8,16 +8,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,18 +26,21 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GroupIndexActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-    private String group_id,group_name, JSON_ACTIVITIES;
-    ListView feed;
+    private String group_id,group_name, JSON_ACTIVITIES,JSON_RESULT;
     EditText txtpost;
     Button post;
     Context ctx;
-   // private ListView groupActivities;
+    List<Post> postList;
+    RecyclerView rpost;
+    Button btnpost;
     String user_id ;
     String body;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,14 +74,29 @@ public class GroupIndexActivity extends AppCompatActivity {
         Intent i = getIntent();
         group_id = i.getStringExtra("group_id");
         group_name = i.getStringExtra("group_name");
+        rpost = (RecyclerView) findViewById(R.id.recyclerView);
 
-      //  Toast.makeText(ctx,group_id,Toast.LENGTH_LONG).show();
+        rpost.setLayoutManager(new LinearLayoutManager(this));
+        postList = new ArrayList<>();
+        fetchPost();
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_up_refresh_layout);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                postList.clear();
+               fetchPost();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        //  Toast.makeText(ctx,group_id,Toast.LENGTH_LONG).show();
         SharedPreferences pref = getSharedPreferences("userdata", MODE_PRIVATE);
         user_id = String.valueOf(pref.getInt("id", 1));
         post = (Button) findViewById(R.id.btnaddpost);
         txtpost =(EditText) findViewById(R.id.txtPost);
         post.setOnClickListener(new View.OnClickListener() {
-            @Override
+           @Override
             public void onClick(View v) {
                 String strbody = txtpost.getText().toString().trim();
 
@@ -90,8 +107,6 @@ public class GroupIndexActivity extends AppCompatActivity {
                 }
                 }
         });
-        feed = (ListView) findViewById(R.id.group_activities);
-
 
 
             BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -102,19 +117,6 @@ public class GroupIndexActivity extends AppCompatActivity {
         bar.setHomeButtonEnabled(true);
         bar.show();
 
-    getPostActivities();
-
-    feed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            HashMap<String, String> map = (HashMap) parent.getItemAtPosition(position);
-            String map_post_id = map.get("post_id");
-            Intent i = new Intent(ctx, ViewPostActivity.class);
-            i.putExtra("post_id", map_post_id);
-            //Toast.makeText(ctx, map_post_id, Toast.LENGTH_SHORT).show();
-            startActivity(i);
-        }
-    });
 
     }
 
@@ -148,71 +150,67 @@ public class GroupIndexActivity extends AppCompatActivity {
                 if(result.equalsIgnoreCase("success")){
                     Toast.makeText(ctx, "Posted", Toast.LENGTH_SHORT).show();
                   txtpost.setText(null);
-                    getPostActivities();
+                    fetchPost();
                 }
             }
         }
     AsyncAddPost ah = new AsyncAddPost();
         ah.execute();
     }
-    private void getPostActivities(){
-        class AsyncGetPosts extends AsyncTask<Void,Void,String>{
-        ProgressDialog loading = new ProgressDialog(ctx);
+    private void fetchPost(){
+        class AsyncFetchPost extends AsyncTask<Void,Void,String>{
+            ProgressDialog loading = new ProgressDialog(ctx);
             @Override
             protected void onPreExecute(){
-                loading.setTitle("Loading");
-                loading.setMessage("Please wait...");
+                super.onPreExecute();
+                loading.setTitle("Fetching Post");
+                loading.setMessage("Please Wait...");
                 loading.show();
             }
             @Override
+            protected void onPostExecute(String result){
+                super.onPostExecute(result);
+                loading.dismiss();
+                JSON_RESULT = result;
+                //  Toast.makeText(ctx, JSON_RESULT, Toast.LENGTH_LONG).show();
+                showPost();
+            }
+
+            @Override
             protected String doInBackground(Void... voids) {
+                RequestHandler rh = new RequestHandler();
                 HashMap<String,String> params = new HashMap<>();
                 params.put("group_id", group_id);
-                RequestHandler rh = new RequestHandler();
                 String res = rh.sendPostRequest(Config.get_activities_url, params);
                 return res;
             }
-            @Override
-            protected void onPostExecute(String result){
-                loading.dismiss();
-                JSON_ACTIVITIES = result;
-                showPosts();
-            }
         }
-    AsyncGetPosts agp = new AsyncGetPosts();
-        agp.execute();
+        AsyncFetchPost aa = new AsyncFetchPost();
+        aa.execute();
     }
-    private void showPosts(){
-        ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
-        try{
-            JSONObject obj = new JSONObject(JSON_ACTIVITIES);
-            JSONArray jsonArray = obj.getJSONArray("result");
 
-                for(int i= 0; i < jsonArray.length(); i++){
-                JSONObject o = jsonArray.getJSONObject(i);
-                    String post_id = o.getString("post_id");
-                    String id = o.getString("user_id");
-                    String name = o.getString("name");
-                    String body = o.getString("body");
-                    String time = o.getString("time");
+  private void showPost(){
+      try {
+          JSONObject obj = new JSONObject(JSON_RESULT);
+          JSONArray jsonArray = obj.getJSONArray("result");
+          for(int i = 0; i < jsonArray.length(); i++){
+              JSONObject o = jsonArray.getJSONObject(i);
+              postList.add(new Post
+                      (
+                              o.getInt("post_id"),
+                              o.getString("name"),
+                              o.getString("time"),
+                              o.getString("body"),
+                              o.getString("image")
+                      )
+              );
 
-                    HashMap<String,String> activity = new HashMap<>();
-                    activity.put("post_id", post_id);
-                    activity.put("user_id", id);
-                    activity.put("name", name);
-                    activity.put("body", body);
-                    activity.put("time", time);
-                    list.add(activity);
+          }
 
-                }
-            }catch (JSONException e){
-
-            }
-        ListAdapter adapter = new SimpleAdapter(
-                ctx, list, R.layout.list_group_activities,
-                new String[]{"user_id","name","body","time"},
-                new int[]{R.id.guser_id,R.id.gname,R.id.gbody,R.id.gtime}
-        );
-    feed.setAdapter(adapter);
-    }
+      } catch (JSONException e) {
+          e.printStackTrace();
+      }
+      PostAdapter adapter = new PostAdapter(ctx, postList);
+      rpost.setAdapter(adapter);
+  }
 }

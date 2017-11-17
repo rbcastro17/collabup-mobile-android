@@ -7,54 +7,39 @@
     android:background="@color/CollabUp_Primary"
     tools:context="com.example.rafae.collabup.RegisterPart2Activity">
 
-    <TextView
-        android:id="@+id/termsandcondition"
-        android:layout_width="119dp"
-        android:layout_height="16dp"
-        android:text="Terms and Condition"
-        android:textColor="@android:color/holo_purple"
-        android:textColorLink="@color/CollabUp_Secondary"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:layout_marginStart="118dp"
-        android:layout_marginEnd="8dp"
-        tools:layout_editor_absoluteY="445dp"
-        tools:layout_editor_absoluteX="118dp" />
-
     <CheckBox
         android:id="@+id/agree"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I Accept the "
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="I Accept the Terms and Condition"
         android:textColor="@color/CollabUp_Label"
         android:textColorHint="@color/CollabUp_Label"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.721" />
 
     <Button
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="41dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
         android:text="Cancel"
         android:textColor="@color/CollabUp_Label"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginLeft="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintVertical_bias="1.0"
-        android:layout_marginStart="30dp" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/register"
@@ -90,12 +75,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintVertical_bias="0.681" />
 
     <TextView
         android:id="@+id/textView9"
@@ -111,30 +95,23 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.174"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintVertical_bias="0.218" />
 
     <ScrollView
         android:id="@+id/agree"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.091"
-        app:layout_constraintHorizontal_bias="1.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -36,12 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         ctx = this;
-     //   SharedPreferences pref = getSharedPreferences("userdata", MODE_PRIVATE);
-     //   String prefemail = pref.getString("email", null);
-     //   if(prefemail.equalsIgnoreCase("signout")){
-
-     //    autologin();
-     //    }
+        SharedPreferences pref = getSharedPreferences("userdata", MODE_PRIVATE);
+        boolean isLogged = pref.getBoolean("isLoggedIn", false);
+        if(isLogged){
+            autologin();
+        }
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
@@ -208,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
                     Intent i = new Intent(ctx, HomeActivity.class);
                     startActivity(i);
                     finish();
-                } else if (role == "admin"){
+                } else if (role.equalsIgnoreCase( "admin")){
                     SharedPreferences.Editor pref = getSharedPreferences("userdata", MODE_PRIVATE).edit();
                     pref.putInt("id", id);
                     pref.putString("password", txtPassword);
@@ -216,6 +215,7 @@ public class LoginActivity extends AppCompatActivity {
                     pref.putString("image", jsonImage);
                     pref.putString("name", jsonName);
                     pref.putString("role", role);
+                    pref.putBoolean("isLoggedIn", true);
                     pref.apply();
                     Intent i = new Intent(ctx, AdminHomeActivity.class);
                     startActivity(i);

@@ -58,7 +58,7 @@ public class AuditTrailActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        name = (TextView) findViewById(R.id.name);
+        name = (TextView) findViewById(R.id.group_name);
         description = (TextView) findViewById(R.id.description);
         date = (TextView) findViewById(R.id.created_at);
         feed = (ListView) findViewById(R.id.listView);
@@ -129,7 +129,7 @@ public class AuditTrailActivity extends AppCompatActivity
         ListAdapter adapter = new SimpleAdapter(
                 this, list, R.layout.list_audit,
                 new String[]{"user","description","created_at"},
-                new int[]{R.id.name,R.id.description,R.id.created_at}
+                new int[]{R.id.group_name,R.id.description,R.id.created_at}
         );
         feed.setAdapter(adapter);
     }

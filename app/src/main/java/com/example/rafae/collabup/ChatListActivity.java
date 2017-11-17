@@ -22,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -117,7 +116,7 @@ public class ChatListActivity extends AppCompatActivity
                 super.onPostExecute(result);
                 loading.dismiss();
                 JSON_GROUP = result;
-                Toast.makeText(ctx, username+id+role+JSON_GROUP,Toast.LENGTH_LONG).show();
+              //  Toast.makeText(ctx, username+id+role+JSON_GROUP,Toast.LENGTH_LONG).show();
                 showGroups();
             }
 
@@ -212,15 +211,20 @@ public class ChatListActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.navigation_home) {
+            Intent i = new Intent(ctx, HomeActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_announcement) {
+            Intent i = new Intent(ctx, AnnouncementActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_events) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_groups) {
+            Intent i = new Intent(ctx, GroupListActivity.class);
+            startActivity(i);
+        } else if (id == R.id.nav_activities) {
+            Intent i = new Intent(ctx, UserActivitiesActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_send) {
 

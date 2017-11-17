@@ -8,6 +8,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="post_name">Post</string>
     <string name="action_logout">Logout</string>
     <string name="title_activity_show_announcement">ShowAnnouncementActivity</string>
     <string name="title_activity_admin_announcement">AdminAnnouncementActivity</string>

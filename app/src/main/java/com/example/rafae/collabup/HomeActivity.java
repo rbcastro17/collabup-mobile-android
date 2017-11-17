@@ -1,5 +1,6 @@
 package com.example.rafae.collabup;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -26,20 +28,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Context ctx;
-   // String id;
+    String id;
     private ImageView headerAvatar, toolbarImage;
     private TextView name, update_info, headerName, headerEmail, toolbarName, changepassword;
-    private String role,avatar;
+    private String role,avatar, JSON_INFO;
 
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ctx = this;
         SharedPreferences pref = getSharedPreferences("userdata", MODE_PRIVATE);
+        id = String.valueOf(pref.getInt("id", 0));
         String email = pref.getString("email", "Error here");
         avatar = pref.getString("image", "avatar.png");
         String strName = pref.getString("name", "No Name");
@@ -85,6 +91,16 @@ public class HomeActivity extends AppCompatActivity
                 .placeholder(R.mipmap.ic_launcher_round)
                 .resize(100,100)
                 .into(toolbarImage);
+       // swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_up_refresh_layout);
+
+    //    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+    //        @Override
+    //        public void onRefresh() {
+
+    //            getPersonalInfo();
+    //            swipeRefreshLayout.setRefreshing(false);
+    //    });
+
     }
     @Override
     public void onBackPressed() {
@@ -152,23 +168,30 @@ public class HomeActivity extends AppCompatActivity
 
     private void getPersonalInfo(){
         class AsyncGetInfo extends AsyncTask<Void,Void,String>{
-        CustomProgressDialog loading = new CustomProgressDialog(ctx);
+                ProgressDialog loading = new ProgressDialog(ctx);
 
             @Override
             protected void onPreExecute(){
+                loading.setTitle("Updating Your Profile");
                 loading.show();
             }
 
             @Override
-            protected String doInBackground(Void... params) {
-                return null;
+            protected String doInBackground(Void... voids) {
+
+                RequestHandler rh = new RequestHandler();
+                HashMap<String,String> params = new HashMap<>();
+                params.put("id", id);
+                String res = rh.sendPostRequest(Config.getuserinfo_url, params);
+                return res;
             }
 
             @Override
             protected void onPostExecute(String result){
                 loading.dismiss();
              try {
-                 showPersonalInfo(result);
+                 JSON_INFO = result;
+                 showPersonalInfo();
              }catch(NullPointerException e){
 
                  AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
@@ -187,9 +210,9 @@ public class HomeActivity extends AppCompatActivity
     agi.execute();
     }
 
-    private void showPersonalInfo(String result){
+    private void showPersonalInfo(){
         try{
-            JSONObject obj = new JSONObject(result);
+            JSONObject obj = new JSONObject(JSON_INFO);
             JSONArray jsonArray = obj.getJSONArray("result");
             JSONObject o = jsonArray.getJSONObject(0);
             String image = o.getString("image");
@@ -214,7 +237,8 @@ public class HomeActivity extends AppCompatActivity
     private void logout(){
 
         SharedPreferences.Editor pref = getSharedPreferences("user_data",MODE_PRIVATE).edit();
-      //  pref.g("");
+       pref.clear();
+        pref.apply();
         Intent i = new Intent(ctx, LoginActivity.class);
         startActivity(i);
         finish();

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,6 +55,36 @@ public class FolderActivity extends AppCompatActivity {
 
         getFolders();
     }
+
+    private void getFolders(){
+        class AsyncGetFolders extends AsyncTask<Void,Void,String>{
+            ProgressDialog loading = new ProgressDialog(ctx);
+            @Override
+            protected void onPreExecute(){
+                loading.setTitle("Loading");
+                loading.setMessage("Please wait...");
+                loading.show();
+            }
+            @Override
+            protected String doInBackground(Void... voids) {
+
+                RequestHandler rh = new RequestHandler();
+                String res = rh.sendGetRequestParam(Config.fetch_folders_url, group_id);
+                return res;
+            }
+            @Override
+            protected void onPostExecute(String result){
+                loading.dismiss();
+                JSON_ACTIVITIES = result;
+                Toast.makeText(ctx, JSON_ACTIVITIES,Toast.LENGTH_LONG).show();
+                showFolder();
+
+            }
+        }
+        AsyncGetFolders agp = new AsyncGetFolders();
+        agp.execute();
+    }
+
     private void showFolder(){
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String, String>>();
         try{
@@ -81,36 +112,8 @@ public class FolderActivity extends AppCompatActivity {
         ListAdapter adapter = new SimpleAdapter(
                 ctx, list, R.layout.list_folders,
                 new String[]{"name","description"},
-                new int[]{R.id.name,R.id.description}
+                new int[]{R.id.group_name,R.id.description}
         );
         folder_list.setAdapter(adapter);
-    }
-    private void getFolders(){
-        class AsyncGetFolders extends AsyncTask<Void,Void,String>{
-            ProgressDialog loading = new ProgressDialog(ctx);
-            @Override
-            protected void onPreExecute(){
-                loading.setTitle("Loading");
-                loading.setMessage("Please wait...");
-                loading.show();
-            }
-            @Override
-            protected String doInBackground(Void... voids) {
-
-                RequestHandler rh = new RequestHandler();
-                String res = rh.sendGetRequestParam(Config.fetch_folders_url, group_id);
-                return res;
-            }
-            @Override
-            protected void onPostExecute(String result){
-                loading.dismiss();
-                JSON_ACTIVITIES = result;
-
-                showFolder();
-
-            }
-        }
-        AsyncGetFolders agp = new AsyncGetFolders();
-        agp.execute();
     }
 }

@@ -1,17 +1,13 @@
 package com.example.rafae.collabup;
 
-import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -25,7 +21,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class UserActivitiesActivity extends AppCompatActivity implements ListView.OnItemClickListener{
 String id;
@@ -122,7 +117,7 @@ String id;
         ListAdapter adapter = new SimpleAdapter(
                 ctx, list, R.layout.list_own_activities,
                 new String[]{"post_id","user_id", "name", "group", "body", "time"},
-                new int[]{R.id.post_id,R.id.user_id,R.id.name, R.id.body, R.id.time}
+                new int[]{R.id.post_id,R.id.user_id,R.id.group_name, R.id.body, R.id.time}
         );
         activities.setAdapter(adapter);
     }

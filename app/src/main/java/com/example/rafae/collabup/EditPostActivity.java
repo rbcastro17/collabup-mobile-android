@@ -192,7 +192,6 @@ public class EditPostActivity extends AppCompatActivity implements View.OnClickL
         if(v == btnSubmit){
             updatePost();
         }
-
         if(v == btnDelete){
             confirmDeletePost();
         }
